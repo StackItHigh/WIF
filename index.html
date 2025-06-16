@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BASE WIF HAIR</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --base-blue: #0052FF;
+    --base-dark-blue: #0052FF;
+    --base-light-blue: #0052FF;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --background: #0052FF;
+    --surface: #0052FF;
+    --border: rgba(255, 255, 255, 0.2);
+    --gradient-primary: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 255, 255, 0.9) 100%);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Wig Rain */
+.wig-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.wig-drop {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('wig.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    animation: wigFall linear infinite;
+}
+
+@keyframes wigFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 82, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #FFFFFF;
+}
+
+/* Main Content */
+.main {
+    padding-top: 64px;
+}
+
+/* Large Scrolling Banner */
+.scrolling-banner {
+    background: var(--base-blue);
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-text {
+    font-size: clamp(120px, 22vw, 300px);
+    font-weight: 900;
+    color: white;
+    white-space: nowrap;
+    animation: scroll 20s linear infinite;
+    will-change: transform;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Hero Logo Animation */
+.hero-logo {
+    width: 300x;
+    height: 300px;
+    margin: 0 auto 50px;
+    animation: logoFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+    position: relative;
+}
+
+.hero-logo.fallback {
+    background: linear-gradient(135deg, #FFFFFF 0%, #E6F0FF 50%, #FFFFFF 100%);
+    border-radius: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--base-blue);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) scale(1.02);
+    }
+    50% {
+        transform: translateY(-12px) scale(1.05);
+    }
+    75% {
+        transform: translateY(-6px) scale(1.02);
+    }
+}
+
+/* Hero Section */
+.hero {
+    padding: 120px 0 60px;
+    text-align: center;
+    background: var(--surface);
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.hero-title {
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+}
+
+.hero-subtitle {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 60px 0 120px;
+    background: var(--surface);
+    text-align: center;
+}
+
+.brian-example {
+    max-width: 400px;
+    height: 400px;
+    margin: 0 auto 40px;
+    border-radius: 16px;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+}
+
+.steps-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step-item {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.typewriter-text {
+    color: #FFFFFF;
+    font-weight: 500;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Typewriter Effect */
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid #FFFFFF;
+    white-space: nowrap;
+    animation: typewriter 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #FFFFFF;
+    }
+}
+
+/* Upload Section */
+.upload-section {
+    padding: 120px 0;
+    background: var(--background);
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-title {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #FFFFFF;
+}
+
+.section-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upload-area {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 80px 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+}
+
+.upload-area:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.upload-area.dragover {
+    border-color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+}
+
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+}
+
+.upload-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+.upload-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+}
+
+.file-input {
+    display: none;
+}
+
+/* Result Section */
+.result-section {
+    display: none;
+    padding: 120px 0;
+    background: var(--surface);
+}
+
+.result-container {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    align-items: start;
+}
+
+.canvas-area {
+    text-align: center;
+}
+
+#outputCanvas {
+    max-width: 100%;
+    max-height: 600px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 40px;
+}
+
+.controls-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    -webkit-appearance: none;
+    margin-bottom: 12px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider-value {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn {
+    background: #FFFFFF;
+    color: var(--base-blue);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading */
+.loading {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #FFFFFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success Message */
+.success-message {
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 20px auto;
+    text-align: center;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+}
+
+/* Footer */
+.footer {
+    background: var(--surface);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 60px 0 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.footer-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 80px 0;
+    }
+
+    .upload-section {
+        padding: 80px 0;
+    }
+
+    .upload-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .upload-area {
+        padding: 60px 20px;
+    }
+
+    .brian-image {
+        height: 300px;
+    }
+
+    .result-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner-text {
+        font-size: clamp(60px, 18vw, 150px);
+    }
+}
+</style>
+</head>
+<body>
+<!-- Wig Rain -->
+<div class="wig-rain" id="wigRain"></div>
+
+<!-- Header -->
+<header class="header">
+<div class="header-container">
+    <a href="#" class="logo">BASE WIF HAIR</a>
+    <nav class="nav">
+        <a href="#upload" class="nav-link">Upload</a>
+        <a href="#build" class="nav-link">Build</a>
+        <a href="#docs" class="nav-link">Docs</a>
+    </nav>
+</div>
+</header>
+
+<!-- Main Content -->
+<main class="main">
+<!-- Large Scrolling Banner -->
+<section class="scrolling-banner">
+    <div class="banner-text">BASE WIF HAIR • BASE WIF HAIR • BASE WIF HAIR • BASE WIF HAIR • BASE WIF HAIR • </div>
+</section>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-logo"></div>
+        <h1 class="hero-title">
+            We are bringing <span class="typewriter-text">hair onchain</span> to<br>
+            <span class="typewriter-text">build</span> a global economy.
+        </h1>
+        <p class="hero-subtitle typewriter" id="typewriterText">
+            Transform your photos with Base Chain wigs and join the onchain revolution.
+        </p>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works">
+    <div class="section-container">
+        <img src="brian.png" alt="Example" class="brian-example" />
+        <div class="steps-list">
+            <div class="step-item">1) Upload your image</div>
+            <div class="step-item">2) Add wif hair</div>
+            <div class="step-item">3) Position</div>
+            <div class="step-item">4) Share</div>
+        </div>
+    </div>
+</section>
+
+<!-- Upload Section -->
+<section class="upload-section" id="upload">
+    <div class="section-container">
+        <h2 class="section-title">Upload Your Photo</h2>
+        <p class="section-subtitle">
+            Drop your image and we'll add the signature Base Chain wig
+        </p>
+
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📸</div>
+            <h3 class="upload-title">Choose your image</h3>
+            <p class="upload-subtitle">Drag and drop or click to browse</p>
+            <input type="file" id="fileInput" class="file-input" accept="image/*">
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing your image...</p>
+        </div>
+    </div>
+</section>
+
+<!-- Result Section -->
+<section class="result-section" id="resultSection">
+    <div class="section-container">
+        <div class="result-container">
+            <div class="canvas-area">
+                <canvas id="outputCanvas"></canvas>
+                
+                <div class="controls">
+                    <button class="btn" id="downloadBtn">
+                        📥 Download
+                    </button>
+                    <button class="btn btn-secondary" id="shareBtn">
+                        🐦 Share
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        🔄 Try Again
+                    </button>
+                </div>
+            </div>
+            
+            <div class="controls-panel">
+                <h3 class="panel-title">🎛️ Adjust Your Wig</h3>
+                
+                <div class="control-group">
+                    <label class="control-label">Wig Size</label>
+                    <input type="range" id="wigSize" class="slider" min="0.3" max="2.0" step="0.05" value="1.0">
+                    <div class="slider-value" id="sizeValue">100%</div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Vertical Position</label>
+                    <input type="range" id="wigPositionY" class="slider" min="-100" max="100" step="5" value="0">
+                    <div class="slider-value" id="positionYValue">0</div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Horizontal Position</label>
+                    <input type="range" id="wigPositionX" class="slider" min="-100" max="100" step="5" value="0">
+                    <div class="slider-value" id="positionXValue">0</div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Rotation</label>
+                    <input type="range" id="wigRotation" class="slider" min="-45" max="45" step="1" value="0">
+                    <div class="slider-value" id="rotationValue">0°</div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Opacity</label>
+                    <input type="range" id="wigOpacity" class="slider" min="0.1" max="1.0" step="0.05" value="1.0">
+                    <div class="slider-value" id="opacityValue">100%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            ✅ Your Base Chain wig has been applied!
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-container">
+    <p class="footer-text">
+        &copy; 2025 BASE WIF HAIR. Built on Base • Bringing hair onchain
+    </p>
+</div>
+</footer>
+
+<script>
+class BaseWifHair {
+    constructor() {
+        this.canvas = document.getElementById('outputCanvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.originalImage = null;
+        this.wigImage = null;
+        this.init();
+    }
+
+    init() {
+        this.loadWigImage();
+        this.setupEventListeners();
+        this.startWigRain();
+        this.setupHeroLogo();
+    }
+
+    setupExampleImage() {
+        const exampleImage = document.getElementById('exampleImage');
+        
+        // Try to load brian.png for example
+        const img = new Image();
+        img.onload = () => {
+            // If brian.png loads successfully, use it as background
+            exampleImage.style.backgroundImage = 'url(brian.png)';
+            console.log('Example image loaded successfully');
+        };
+        img.onerror = () => {
+            // If brian.png fails to load, use fallback
+            exampleImage.classList.add('fallback');
+            exampleImage.textContent = '🧑‍💼';
+            console.log('Using fallback example image');
+        };
+        img.src = 'brian.png';
+    }
+
+    setupHeroLogo() {
+        const heroLogo = document.querySelector('.hero-logo');
+        
+        // Try to load wiflogo.png for hero
+        const img = new Image();
+        img.onload = () => {
+            // If wiflogo.png loads successfully, use it as background
+            heroLogo.style.backgroundImage = 'url(wiflogo.png)';
+            heroLogo.style.backgroundSize = 'contain';
+            heroLogo.style.backgroundRepeat = 'no-repeat';
+            heroLogo.style.backgroundPosition = 'center';
+            console.log('Hero logo loaded successfully');
+        };
+        img.onerror = () => {
+            // If wiflogo.png fails to load, use fallback styling
+            heroLogo.classList.add('fallback');
+            heroLogo.textContent = 'WIF';
+            console.log('Using fallback hero logo');
+        };
+        img.src = 'wiflogo.png';
+    }
+
+    loadWigImage() {
+        this.wigImage = new Image();
+        this.wigImage.crossOrigin = 'anonymous';
+        this.wigImage.onload = () => {
+            console.log('Wig loaded successfully');
+        };
+        this.wigImage.onerror = () => {
+            console.log('Could not load wig.png, creating fallback');
+            this.createFallbackWig();
+        };
+        this.wigImage.src = 'wig.png';
+    }
+
+    createFallbackWig() {
+        const wigCanvas = document.createElement('canvas');
+        const wigCtx = wigCanvas.getContext('2d');
+        wigCanvas.width = 400;
+        wigCanvas.height = 300;
+
+        // Create Base blue gradient wig
+        const gradient = wigCtx.createLinearGradient(0, 0, 400, 300);
+        gradient.addColorStop(0, '#0052FF');
+        gradient.addColorStop(0.5, '#1E6BFF');
+        gradient.addColorStop(1, '#0041CC');
+        
+        wigCtx.fillStyle = gradient;
+        wigCtx.beginPath();
+        wigCtx.ellipse(200, 150, 180, 120, 0, 0, Math.PI * 2);
+        wigCtx.fill();
+
+        // Add hair texture
+        wigCtx.strokeStyle = '#0041CC';
+        wigCtx.lineWidth = 3;
+        wigCtx.lineCap = 'round';
+        
+        for (let i = 0; i < 25; i++) {
+            const startX = 50 + Math.random() * 300;
+            const startY = 200 + Math.random() * 50;
+            
+            wigCtx.beginPath();
+            wigCtx.moveTo(startX, startY);
+            
+            const cp1x = startX + (Math.random() - 0.5) * 40;
+            const cp1y = startY + 30 + Math.random() * 20;
+            const endX = startX + (Math.random() - 0.5) * 20;
+            const endY = startY + 80 + Math.random() * 40;
+            
+            wigCtx.quadraticCurveTo(cp1x, cp1y, endX, endY);
+            wigCtx.stroke();
+        }
+
+        const fallbackWigImage = new Image();
+        fallbackWigImage.src = wigCanvas.toDataURL();
+        this.wigImage = fallbackWigImage;
+    }
+
+    setupEventListeners() {
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // Upload events
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                this.handleFile(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                this.handleFile(e.target.files[0]);
+            }
+        });
+
+        // Control buttons
+        downloadBtn.addEventListener('click', () => this.downloadImage());
+        shareBtn.addEventListener('click', () => this.shareToTwitter());
+        resetBtn.addEventListener('click', () => this.reset());
+
+        // Wig adjustment controls
+        this.setupWigControls();
+    }
+
+    setupWigControls() {
+        const controls = [
+            { id: 'wigSize', valueId: 'sizeValue', format: '%' },
+            { id: 'wigPositionY', valueId: 'positionYValue', format: '' },
+            { id: 'wigPositionX', valueId: 'positionXValue', format: '' },
+            { id: 'wigRotation', valueId: 'rotationValue', format: '°' },
+            { id: 'wigOpacity', valueId: 'opacityValue', format: '%' }
+        ];
+
+        controls.forEach(control => {
+            const slider = document.getElementById(control.id);
+            const valueDisplay = document.getElementById(control.valueId);
+            
+            slider.addEventListener('input', (e) => {
+                // Update display value
+                let displayValue = e.target.value;
+                if (control.format === '%') {
+                    displayValue = Math.round(parseFloat(e.target.value) * 100);
+                }
+                valueDisplay.textContent = displayValue + control.format;
+                
+                // Apply wig with new settings
+                if (this.originalImage && this.wigImage) {
+                    this.applyWig();
+                }
+            });
+        });
+    }
+
+    handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+            alert('Please select a valid image file.');
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert('File size must be less than 10MB.');
+            return;
+        }
+
+        this.showLoading(true);
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                this.originalImage = img;
+                this.displayImage();
+                setTimeout(() => {
+                    this.applyWig();
+                    this.showResult();
+                    this.showLoading(false);
+                    this.showSuccess();
+                }, 1000);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    showLoading(show) {
+        document.getElementById('loading').style.display = show ? 'block' : 'none';
+    }
+
+    showSuccess() {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 5000);
+    }
+
+    displayImage() {
+        const maxWidth = 800;
+        const maxHeight = 600;
+        let { width, height } = this.originalImage;
+
+        if (width > maxWidth || height > maxHeight) {
+            const ratio = Math.min(maxWidth / width, maxHeight / height);
+            width *= ratio;
+            height *= ratio;
+        }
+
+        this.canvas.width = width;
+        this.canvas.height = height;
+        this.ctx.drawImage(this.originalImage, 0, 0, width, height);
+    }
+
+    applyWig() {
+        if (!this.originalImage || !this.wigImage) return;
+
+        this.displayImage();
+
+        // Get all control values
+        const wigSize = parseFloat(document.getElementById('wigSize').value);
+        const wigPositionY = parseInt(document.getElementById('wigPositionY').value);
+        const wigPositionX = parseInt(document.getElementById('wigPositionX').value);
+        const wigRotation = parseInt(document.getElementById('wigRotation').value);
+        const wigOpacity = parseFloat(document.getElementById('wigOpacity').value);
+
+        // Calculate wig positioning and sizing
+        const wigWidth = this.canvas.width * 0.8 * wigSize;
+        const wigHeight = (this.wigImage.height / this.wigImage.width) * wigWidth;
+        const wigX = (this.canvas.width / 2) - (wigWidth / 2) + wigPositionX;
+        const wigY = (this.canvas.height * 0.05) + wigPositionY;
+
+        // Save context state
+        this.ctx.save();
+        
+        // Set opacity
+        this.ctx.globalAlpha = wigOpacity;
+        
+        // Apply rotation if needed
+        if (wigRotation !== 0) {
+            const centerX = wigX + wigWidth / 2;
+            const centerY = wigY + wigHeight / 2;
+            this.ctx.translate(centerX, centerY);
+            this.ctx.rotate((wigRotation * Math.PI) / 180);
+            this.ctx.translate(-centerX, -centerY);
+        }
+
+        // Draw the wig
+        this.ctx.globalCompositeOperation = 'source-over';
+        this.ctx.drawImage(this.wigImage, wigX, wigY, wigWidth, wigHeight);
+        
+        // Restore context state
+        this.ctx.restore();
+    }
+
+    showResult() {
+        document.getElementById('resultSection').style.display = 'block';
+        document.getElementById('resultSection').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
+
+    downloadImage() {
+        const link = document.createElement('a');
+        link.download = `base-wif-hair-${Date.now()}.png`;
+        link.href = this.canvas.toDataURL('image/png', 1.0);
+        link.click();
+    }
+
+    shareToTwitter() {
+        const text = encodeURIComponent("Just got my BASE WIF HAIR! Bringing hair onchain 🦱⛓️ #Base #BaseWifHair #Onchain");
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+    }
+
+    reset() {
+        this.originalImage = null;
+        document.getElementById('resultSection').style.display = 'none';
+        document.getElementById('fileInput').value = '';
+        document.getElementById('successMessage').style.display = 'none';
+        
+        // Reset all sliders to default values
+        document.getElementById('wigSize').value = '1.0';
+        document.getElementById('wigPositionY').value = '0';
+        document.getElementById('wigPositionX').value = '0';
+        document.getElementById('wigRotation').value = '0';
+        document.getElementById('wigOpacity').value = '1.0';
+        
+        // Reset slider value displays
+        document.getElementById('sizeValue').textContent = '100%';
+        document.getElementById('positionYValue').textContent = '0';
+        document.getElementById('positionXValue').textContent = '0';
+        document.getElementById('rotationValue').textContent = '0°';
+        document.getElementById('opacityValue').textContent = '100%';
+        
+        document.getElementById('upload').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
+
+    startWigRain() {
+        const wigRain = document.getElementById('wigRain');
+        
+        // Create initial drops
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                this.createWigDrop();
+            }, i * 400);
+        }
+        
+        // Continue creating drops more frequently
+        setInterval(() => {
+            if (Math.random() < 0.6) {
+                this.createWigDrop();
+            }
+        }, 1500);
+    }
+
+    createWigDrop() {
+        const wigRain = document.getElementById('wigRain');
+        const wigDrop = document.createElement('div');
+        wigDrop.className = 'wig-drop';
+        
+        wigDrop.style.left = Math.random() * window.innerWidth + 'px';
+        
+        const size = 50 + Math.random() * 30; // Larger size range: 50-80px
+        wigDrop.style.width = size + 'px';
+        wigDrop.style.height = size + 'px';
+        
+        const duration = 4 + Math.random() * 3;
+        wigDrop.style.animationDuration = duration + 's';
+        
+        wigRain.appendChild(wigDrop);
+        
+        setTimeout(() => {
+            if (wigDrop.parentNode) {
+                wigDrop.parentNode.removeChild(wigDrop);
+            }
+        }, duration * 1000);
+    }
+}
+
+// Initialize
+let baseWifHair;
+window.addEventListener('load', () => {
+    baseWifHair = new BaseWifHair();
+    startTypewriter();
+});
+
+// Typewriter effect for hero subtitle
+function startTypewriter() {
+    const typewriterElement = document.getElementById('typewriterText');
+    const text = "Join the hair onchain revolution";
+    
+    // Clear the text and add the class
+    typewriterElement.textContent = text;
+    typewriterElement.classList.add('typewriter');
+    
+    // The CSS animation will handle the repeating
+}
+
+// Smooth scrolling for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+</script>
+</body>
+</html>
