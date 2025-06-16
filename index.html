@@ -89,7 +89,7 @@ body {
     padding: 0 24px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 64px;
 }
 
@@ -148,8 +148,8 @@ body {
 
 /* Hero Logo Animation */
 .hero-logo {
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     margin: 0 auto 50px;
     animation: logoFloat 4s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
@@ -228,29 +228,185 @@ body {
 .brian-example {
     max-width: 300px;
     height: 300px;
-    margin: 0 auto 40px;
+    margin: 0 auto 60px;
     border-radius: 16px;
     border: 4px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     object-fit: cover;
 }
 
-.steps-list {
+/* Enhanced Timeline Design */
+.timeline-container {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    position: relative;
+    padding: 80px 0;
 }
 
-.step-item {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 16px;
-    font-weight: 500;
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.timeline-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 50%, #FFFFFF 100%);
+    border-radius: 4px;
+    width: 0%;
+    animation: liquidFlow 8s ease-in-out infinite;
+    position: relative;
+}
+
+.timeline-progress::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -20px;
+    right: -20px;
+    bottom: -2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    border-radius: 6px;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes liquidFlow {
+    0% { width: 0%; }
+    20% { width: 25%; }
+    40% { width: 50%; }
+    60% { width: 75%; }
+    80% { width: 100%; }
+    100% { width: 100%; }
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateX(-100px) scaleX(1); }
+    50% { transform: translateX(100px) scaleX(1.5); }
+}
+
+.timeline-steps {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    flex: 1 1 120px;
-    min-width: 120px;
+    animation: stepReveal 0.8s ease-out;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--step-delay) * 0.3s);
+}
+
+.timeline-step:nth-child(1) { --step-delay: 0; }
+.timeline-step:nth-child(2) { --step-delay: 1; }
+.timeline-step:nth-child(3) { --step-delay: 2; }
+.timeline-step:nth-child(4) { --step-delay: 3; }
+
+@keyframes stepReveal {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.timeline-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.timeline-circle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: ripple 2s linear infinite;
+    opacity: 0;
+}
+
+.timeline-circle.active::before {
+    opacity: 1;
+}
+
+@keyframes ripple {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.timeline-circle.active {
+    background: #FFFFFF;
+    color: #0052FF;
+    border-color: #FFFFFF;
+    box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.6),
+        0 0 60px rgba(255, 255, 255, 0.3);
+    animation: activeGlow 2s ease-in-out infinite;
+}
+
+@keyframes activeGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 60px rgba(255, 255, 255, 0.3);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 
+            0 0 40px rgba(255, 255, 255, 0.8),
+            0 0 80px rgba(255, 255, 255, 0.5);
+        transform: scale(1.05);
+    }
+}
+
+.timeline-circle:hover {
+    transform: scale(1.25);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+.timeline-label {
+    font-size: 22px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 140px;
+    line-height: 1.3;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .typewriter-text {
@@ -349,6 +505,15 @@ body {
     font-size: 48px;
     margin-bottom: 24px;
     color: #FFFFFF;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .upload-title {
@@ -630,8 +795,12 @@ body {
     }
 
     .hero-logo {
-        width: 200px;
-        height: 200px;
+        width: 280px;
+        height: 280px;
+    }
+
+    .hero-logo.fallback {
+        font-size: 42px;
     }
 
     .hero-title {
@@ -651,6 +820,12 @@ body {
     .upload-area {
         padding: 40px 15px;
         margin: 0 20px;
+    }
+
+    .upload-icon {
+        width: 120px;
+        height: 120px;
+        font-size: 64px;
     }
 
     .brian-example {
@@ -733,6 +908,12 @@ body {
         padding: 30px 15px;
     }
 
+    .upload-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 56px;
+    }
+
     .controls-panel {
         margin: 0 16px;
         padding: 16px;
@@ -747,12 +928,12 @@ body {
     }
 
     .hero-logo {
-        width: 150px;
-        height: 150px;
+        width: 220px;
+        height: 220px;
     }
 
     .hero-logo.fallback {
-        font-size: 32px;
+        font-size: 36px;
     }
 }
 </style>
@@ -798,11 +979,28 @@ body {
 <section class="how-it-works">
     <div class="section-container">
         <img src="brian.png" alt="Example" class="brian-example" />
-        <div class="steps-list">
-            <div class="step-item">1) Upload your image</div>
-            <div class="step-item">2) Add wif hair</div>
-            <div class="step-item">3) Position</div>
-            <div class="step-item">4) Share</div>
+        <div class="timeline-container">
+            <div class="timeline-line">
+                <div class="timeline-progress"></div>
+            </div>
+            <div class="timeline-steps">
+                <div class="timeline-step">
+                    <div class="timeline-circle" id="step1">1</div>
+                    <div class="timeline-label">Upload</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-circle" id="step2">2</div>
+                    <div class="timeline-label">Add wif hair</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-circle" id="step3">3</div>
+                    <div class="timeline-label">Position</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-circle" id="step4">4</div>
+                    <div class="timeline-label">Share</div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -816,7 +1014,7 @@ body {
         </p>
 
         <div class="upload-area" id="uploadArea">
-            <div class="upload-icon">📸</div>
+            <div class="upload-icon" id="uploadIcon">📸</div>
             <h3 class="upload-title">Choose your image</h3>
             <p class="upload-subtitle">Drag and drop or click to browse</p>
             <input type="file" id="fileInput" class="file-input" accept="image/*">
@@ -925,7 +1123,40 @@ class BaseWifHair {
         this.setupEventListeners();
         this.startWigRain();
         this.setupHeroLogo();
+        this.setupUploadIcon();
         this.setupTouchControls();
+        this.startTimelineAnimation();
+    }
+
+    startTimelineAnimation() {
+        const steps = document.querySelectorAll('.timeline-circle');
+        
+        // Start all steps as inactive
+        steps.forEach(step => {
+            step.classList.remove('active');
+        });
+        
+        // Activate steps in sequence
+        let currentStep = 0;
+        const activateNextStep = () => {
+            if (currentStep < steps.length) {
+                steps[currentStep].classList.add('active');
+                currentStep++;
+                
+                // Continue the sequence
+                setTimeout(activateNextStep, 2000); // 2 seconds between each step
+            } else {
+                // Reset and restart the sequence
+                setTimeout(() => {
+                    steps.forEach(step => step.classList.remove('active'));
+                    currentStep = 0;
+                    setTimeout(activateNextStep, 1000);
+                }, 2000);
+            }
+        };
+        
+        // Start the animation after a short delay
+        setTimeout(activateNextStep, 1000);
     }
 
     setupTouchControls() {
@@ -1049,23 +1280,23 @@ class BaseWifHair {
         canvas.addEventListener('touchcancel', handleEnd);
     }
 
-    setupExampleImage() {
-        const exampleImage = document.getElementById('exampleImage');
+    setupUploadIcon() {
+        const uploadIcon = document.getElementById('uploadIcon');
         
-        // Try to load brian.png for example
+        // Try to load wiflogo.png for upload icon
         const img = new Image();
         img.onload = () => {
-            // If brian.png loads successfully, use it as background
-            exampleImage.style.backgroundImage = 'url(brian.png)';
-            console.log('Example image loaded successfully');
+            // If wiflogo.png loads successfully, use it as background
+            uploadIcon.style.backgroundImage = 'url(wiflogo.png)';
+            uploadIcon.textContent = ''; // Remove emoji
+            console.log('Upload icon loaded successfully');
         };
         img.onerror = () => {
-            // If brian.png fails to load, use fallback
-            exampleImage.classList.add('fallback');
-            exampleImage.textContent = '🧑‍💼';
-            console.log('Using fallback example image');
+            // If wiflogo.png fails to load, keep the emoji
+            uploadIcon.textContent = '📸';
+            console.log('Using fallback upload icon');
         };
-        img.src = 'brian.png';
+        img.src = 'wiflogo.png';
     }
 
     setupHeroLogo() {
