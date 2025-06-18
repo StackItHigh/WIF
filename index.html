@@ -229,8 +229,8 @@ body {
 
 .social-link {
     display: inline-block;
-    width: 45px;
-    height: 45px;
+    width: 20px;
+    height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1680,11 +1680,21 @@ class BaseWifHair {
         const wigRotation = parseInt(document.getElementById('wigRotation').value);
         const wigOpacity = parseFloat(document.getElementById('wigOpacity').value);
 
-        // Calculate wig positioning and sizing for HD canvas
-        const wigWidth = hdWidth * 0.8 * wigSize;
-        const wigHeight = (this.wigImage.height / this.wigImage.width) * wigWidth;
-        const wigX = (hdWidth / 2) - (wigWidth / 2) + (wigPositionX * scale);
-        const wigY = (hdHeight * 0.05) + (wigPositionY * scale);
+        // Calculate the scale ratio between display canvas and original image
+        const displayToOriginalRatioX = this.originalImage.width / this.canvas.width;
+        const displayToOriginalRatioY = this.originalImage.height / this.canvas.height;
+
+        // Calculate wig positioning and sizing for HD canvas using the same proportions as display
+        const wigWidthDisplay = this.canvas.width * 0.8 * wigSize;
+        const wigHeightDisplay = (this.wigImage.height / this.wigImage.width) * wigWidthDisplay;
+        const wigXDisplay = (this.canvas.width / 2) - (wigWidthDisplay / 2) + wigPositionX;
+        const wigYDisplay = (this.canvas.height * 0.05) + wigPositionY;
+
+        // Convert display positions to HD canvas positions
+        const wigWidth = wigWidthDisplay * displayToOriginalRatioX * scale;
+        const wigHeight = wigHeightDisplay * displayToOriginalRatioY * scale;
+        const wigX = wigXDisplay * displayToOriginalRatioX * scale;
+        const wigY = wigYDisplay * displayToOriginalRatioY * scale;
 
         // Draw wig on HD canvas
         this.drawWigOnCanvas(this.hdCtx, wigX, wigY, wigWidth, wigHeight, wigRotation, wigOpacity);
