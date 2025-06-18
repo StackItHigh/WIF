@@ -210,12 +210,64 @@ body {
     font-size: clamp(18px, 4vw, 36px);
     font-weight: 300;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     display: block;
     text-align: center;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.social-link {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
+    filter: brightness(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.social-link:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2) drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+}
+
+.social-link.dex {
+    background-image: url('dex.png');
+}
+
+.social-link.telegram {
+    background-image: url('TG.png');
+}
+
+.social-link.twitter {
+    background-image: url('X.png');
+}
+
+/* Fallback for missing social icons */
+.social-link.fallback {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 /* How It Works Section */
@@ -810,7 +862,12 @@ body {
 
     .hero-subtitle {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
+    }
+
+    .social-links {
+        margin-bottom: 30px;
+        gap: 15px;
     }
 
     .upload-section {
@@ -935,6 +992,10 @@ body {
     .hero-logo.fallback {
         font-size: 36px;
     }
+
+    .social-links {
+        gap: 12px;
+    }
 }
 </style>
 </head>
@@ -972,6 +1033,13 @@ body {
         <p class="hero-subtitle typewriter" id="typewriterText">
             Transform your photos with Base Chain wigs and join the onchain revolution.
         </p>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="#" class="social-link dex" id="dexLink" title="Dexscreener"></a>
+            <a href="#" class="social-link telegram" id="telegramLink" title="Telegram"></a>
+            <a href="#" class="social-link twitter" id="twitterLink" title="Twitter/X"></a>
+        </div>
     </div>
 </section>
 
@@ -1040,7 +1108,7 @@ body {
                 
                 <div class="controls">
                     <button class="btn" id="downloadBtn">
-                        📥 Download
+                        📥 Download HD
                     </button>
                     <button class="btn btn-secondary" id="shareBtn">
                         🐦 Share
@@ -1115,6 +1183,9 @@ class BaseWifHair {
         this.isResizing = false;
         this.initialPinchDistance = 0;
         this.initialWigSize = 1.0;
+        // High-resolution canvas for better quality downloads
+        this.hdCanvas = document.createElement('canvas');
+        this.hdCtx = this.hdCanvas.getContext('2d');
         this.init();
     }
 
@@ -1124,8 +1195,36 @@ class BaseWifHair {
         this.startWigRain();
         this.setupHeroLogo();
         this.setupUploadIcon();
+        this.setupSocialLinks();
         this.setupTouchControls();
         this.startTimelineAnimation();
+    }
+
+    setupSocialLinks() {
+        const socialLinks = [
+            { id: 'dexLink', class: 'dex', imageSrc: 'dex.png', fallbackText: 'DEX' },
+            { id: 'telegramLink', class: 'telegram', imageSrc: 'TG.png', fallbackText: 'TG' },
+            { id: 'twitterLink', class: 'twitter', imageSrc: 'X.png', fallbackText: 'X' }
+        ];
+
+        socialLinks.forEach(link => {
+            const element = document.getElementById(link.id);
+            const img = new Image();
+            
+            img.onload = () => {
+                console.log(`${link.class} icon loaded successfully`);
+            };
+            
+            img.onerror = () => {
+                // If image fails to load, use fallback styling
+                element.classList.add('fallback');
+                element.textContent = link.fallbackText;
+                element.style.backgroundImage = 'none';
+                console.log(`Using fallback for ${link.class} icon`);
+            };
+            
+            img.src = link.imageSrc;
+        });
     }
 
     startTimelineAnimation() {
@@ -1412,7 +1511,7 @@ class BaseWifHair {
         });
 
         // Control buttons
-        downloadBtn.addEventListener('click', () => this.downloadImage());
+        downloadBtn.addEventListener('click', () => this.downloadHDImage());
         shareBtn.addEventListener('click', () => this.shareToTwitter());
         resetBtn.addEventListener('click', () => this.reset());
 
@@ -1526,27 +1625,75 @@ class BaseWifHair {
         const wigX = (this.canvas.width / 2) - (wigWidth / 2) + wigPositionX;
         const wigY = (this.canvas.height * 0.05) + wigPositionY;
 
+        // Apply to display canvas
+        this.drawWigOnCanvas(this.ctx, wigX, wigY, wigWidth, wigHeight, wigRotation, wigOpacity);
+    }
+
+    drawWigOnCanvas(ctx, wigX, wigY, wigWidth, wigHeight, wigRotation, wigOpacity) {
         // Save context state
-        this.ctx.save();
+        ctx.save();
         
         // Set opacity
-        this.ctx.globalAlpha = wigOpacity;
+        ctx.globalAlpha = wigOpacity;
         
         // Apply rotation if needed
         if (wigRotation !== 0) {
             const centerX = wigX + wigWidth / 2;
             const centerY = wigY + wigHeight / 2;
-            this.ctx.translate(centerX, centerY);
-            this.ctx.rotate((wigRotation * Math.PI) / 180);
-            this.ctx.translate(-centerX, -centerY);
+            ctx.translate(centerX, centerY);
+            ctx.rotate((wigRotation * Math.PI) / 180);
+            ctx.translate(-centerX, -centerY);
         }
 
-        // Draw the wig
-        this.ctx.globalCompositeOperation = 'source-over';
-        this.ctx.drawImage(this.wigImage, wigX, wigY, wigWidth, wigHeight);
+        // Draw the wig with high quality
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(this.wigImage, wigX, wigY, wigWidth, wigHeight);
         
         // Restore context state
-        this.ctx.restore();
+        ctx.restore();
+    }
+
+    downloadHDImage() {
+        if (!this.originalImage || !this.wigImage) return;
+
+        // Create high-resolution version (2x scale for better quality)
+        const scale = 2;
+        const hdWidth = this.originalImage.width * scale;
+        const hdHeight = this.originalImage.height * scale;
+        
+        this.hdCanvas.width = hdWidth;
+        this.hdCanvas.height = hdHeight;
+        
+        // Enable high-quality rendering
+        this.hdCtx.imageSmoothingEnabled = true;
+        this.hdCtx.imageSmoothingQuality = 'high';
+        
+        // Draw original image at high resolution
+        this.hdCtx.drawImage(this.originalImage, 0, 0, hdWidth, hdHeight);
+
+        // Get all control values
+        const wigSize = parseFloat(document.getElementById('wigSize').value);
+        const wigPositionY = parseInt(document.getElementById('wigPositionY').value);
+        const wigPositionX = parseInt(document.getElementById('wigPositionX').value);
+        const wigRotation = parseInt(document.getElementById('wigRotation').value);
+        const wigOpacity = parseFloat(document.getElementById('wigOpacity').value);
+
+        // Calculate wig positioning and sizing for HD canvas
+        const wigWidth = hdWidth * 0.8 * wigSize;
+        const wigHeight = (this.wigImage.height / this.wigImage.width) * wigWidth;
+        const wigX = (hdWidth / 2) - (wigWidth / 2) + (wigPositionX * scale);
+        const wigY = (hdHeight * 0.05) + (wigPositionY * scale);
+
+        // Draw wig on HD canvas
+        this.drawWigOnCanvas(this.hdCtx, wigX, wigY, wigWidth, wigHeight, wigRotation, wigOpacity);
+
+        // Download HD image
+        const link = document.createElement('a');
+        link.download = `base-wif-hair-hd-${Date.now()}.png`;
+        link.href = this.hdCanvas.toDataURL('image/png', 1.0);
+        link.click();
     }
 
     showResult() {
@@ -1554,13 +1701,6 @@ class BaseWifHair {
         document.getElementById('resultSection').scrollIntoView({ 
             behavior: 'smooth' 
         });
-    }
-
-    downloadImage() {
-        const link = document.createElement('a');
-        link.download = `base-wif-hair-${Date.now()}.png`;
-        link.href = this.canvas.toDataURL('image/png', 1.0);
-        link.click();
     }
 
     shareToTwitter() {
