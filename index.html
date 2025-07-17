@@ -14,17 +14,17 @@
 
 :root {
     --base-blue: #0052FF;
-    --base-dark-blue: #0052FF;
-    --base-light-blue: #0052FF;
-    --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.8);
-    --background: #0052FF;
-    --surface: #0052FF;
-    --border: rgba(255, 255, 255, 0.2);
-    --gradient-primary: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 255, 255, 0.9) 100%);
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+    --base-dark-blue: #0041CC;
+    --base-light-blue: #1E6BFF;
+    --text-primary: #0052FF;
+    --text-secondary: #0041CC;
+    --background: #ffffff;
+    --surface: #ffffff;
+    --border: rgba(0, 82, 255, 0.2);
+    --gradient-primary: linear-gradient(135deg, #0052FF 0%, #1E6BFF 100%);
+    --shadow-sm: 0 1px 2px 0 rgb(0 82 255 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 82 255 / 0.1), 0 2px 4px -2px rgb(0 82 255 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 82 255 / 0.1), 0 4px 6px -4px rgb(0 82 255 / 0.05);
 }
 
 body {
@@ -77,9 +77,9 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 82, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid var(--border);
     z-index: 100;
 }
 
@@ -94,10 +94,23 @@ body {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 20px;
     font-weight: 800;
-    color: #FFFFFF;
+    color: #000000;
     text-decoration: none;
+    font-family: Arial, sans-serif;
+}
+
+.logo::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: var(--base-blue);
+    border-radius: 6px;
+    display: block;
 }
 
 .nav {
@@ -107,7 +120,7 @@ body {
 }
 
 .nav-link {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
@@ -115,7 +128,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #FFFFFF;
+    color: var(--text-primary);
 }
 
 /* Main Content */
@@ -125,16 +138,17 @@ body {
 
 /* Large Scrolling Banner */
 .scrolling-banner {
-    background: var(--base-blue);
+    background: var(--background);
     padding: 80px 0;
     overflow: hidden;
     position: relative;
 }
 
 .banner-text {
+    font-family: Arial, sans-serif;
     font-size: clamp(60px, 15vw, 300px);
     font-weight: 900;
-    color: white;
+    color: var(--text-primary);
     white-space: nowrap;
     animation: scroll 20s linear infinite;
     will-change: transform;
@@ -152,20 +166,20 @@ body {
     height: 350px;
     margin: 0 auto 50px;
     animation: logoFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+    filter: drop-shadow(0 0 30px rgba(0, 82, 255, 0.4));
     position: relative;
 }
 
 .hero-logo.fallback {
-    background: linear-gradient(135deg, #FFFFFF 0%, #E6F0FF 50%, #FFFFFF 100%);
+    background: linear-gradient(135deg, var(--base-blue) 0%, var(--base-light-blue) 50%, var(--base-dark-blue) 100%);
     border-radius: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--base-blue);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 48px;
     font-weight: 900;
-    color: var(--base-blue);
+    color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -202,14 +216,14 @@ body {
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 24px;
-    color: #FFFFFF;
+    color: var(--text-primary);
     text-align: center;
 }
 
 .hero-subtitle {
     font-size: clamp(18px, 4vw, 36px);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     margin-bottom: 40px;
     max-width: 800px;
     margin-left: auto;
@@ -235,12 +249,12 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     transition: all 0.3s ease;
-    filter: brightness(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    filter: brightness(1) drop-shadow(0 0 8px rgba(0, 82, 255, 0.3));
 }
 
 .social-link:hover {
     transform: scale(1.2);
-    filter: brightness(1.2) drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+    filter: brightness(1.2) drop-shadow(0 0 12px rgba(0, 82, 255, 0.6));
 }
 
 .social-link.dex {
@@ -260,13 +274,13 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: var(--base-blue);
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
-    color: #FFFFFF;
+    color: white;
     text-decoration: none;
 }
 
@@ -282,8 +296,8 @@ body {
     height: 300px;
     margin: 0 auto 60px;
     border-radius: 16px;
-    border: 4px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 4px solid var(--border);
+    box-shadow: var(--shadow-lg);
     object-fit: cover;
 }
 
@@ -302,14 +316,14 @@ body {
     left: 5%;
     right: 5%;
     height: 8px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 82, 255, 0.2);
     border-radius: 4px;
     overflow: hidden;
 }
 
 .timeline-progress {
     height: 100%;
-    background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 50%, #FFFFFF 100%);
+    background: var(--gradient-primary);
     border-radius: 4px;
     width: 0%;
     animation: liquidFlow 8s ease-in-out infinite;
@@ -323,7 +337,7 @@ body {
     left: -20px;
     right: -20px;
     bottom: -2px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 0.4), transparent);
     border-radius: 6px;
     animation: wave 2s ease-in-out infinite;
 }
@@ -381,13 +395,14 @@ body {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 4px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 82, 255, 0.1);
+    border: 4px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 42px;
     font-weight: 900;
+    color: var(--text-primary);
     margin-bottom: 25px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
@@ -408,7 +423,7 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background: conic-gradient(from 0deg, transparent, rgba(0, 82, 255, 0.3), transparent);
     animation: ripple 2s linear infinite;
     opacity: 0;
 }
@@ -423,54 +438,54 @@ body {
 }
 
 .timeline-circle.active {
-    background: #FFFFFF;
-    color: #0052FF;
-    border-color: #FFFFFF;
+    background: var(--base-blue);
+    color: white;
+    border-color: var(--base-blue);
     box-shadow: 
-        0 0 30px rgba(255, 255, 255, 0.6),
-        0 0 60px rgba(255, 255, 255, 0.3);
+        0 0 30px rgba(0, 82, 255, 0.6),
+        0 0 60px rgba(0, 82, 255, 0.3);
     animation: activeGlow 2s ease-in-out infinite;
 }
 
 @keyframes activeGlow {
     0%, 100% { 
         box-shadow: 
-            0 0 30px rgba(255, 255, 255, 0.6),
-            0 0 60px rgba(255, 255, 255, 0.3);
+            0 0 30px rgba(0, 82, 255, 0.6),
+            0 0 60px rgba(0, 82, 255, 0.3);
         transform: scale(1);
     }
     50% { 
         box-shadow: 
-            0 0 40px rgba(255, 255, 255, 0.8),
-            0 0 80px rgba(255, 255, 255, 0.5);
+            0 0 40px rgba(0, 82, 255, 0.8),
+            0 0 80px rgba(0, 82, 255, 0.5);
         transform: scale(1.05);
     }
 }
 
 .timeline-circle:hover {
     transform: scale(1.25);
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 50px rgba(0, 82, 255, 0.5);
 }
 
 .timeline-label {
     font-size: 22px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--text-primary);
     max-width: 140px;
     line-height: 1.3;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 10px rgba(0, 82, 255, 0.3);
 }
 
 .typewriter-text {
-    color: #FFFFFF;
+    color: var(--text-primary);
     font-weight: 500;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 20px rgba(0, 82, 255, 0.5);
 }
 
 /* Typewriter Effect */
 .typewriter {
     overflow: hidden;
-    border-right: 3px solid #FFFFFF;
+    border-right: 3px solid var(--text-primary);
     white-space: nowrap;
     animation: typewriter 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
     display: inline-block;
@@ -494,7 +509,7 @@ body {
         border-color: transparent;
     }
     50% {
-        border-color: #FFFFFF;
+        border-color: var(--text-primary);
     }
 }
 
@@ -516,12 +531,12 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 16px;
-    color: #FFFFFF;
+    color: var(--text-primary);
 }
 
 .section-subtitle {
     font-size: clamp(16px, 4vw, 20px);
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     text-align: center;
     margin-bottom: 60px;
     max-width: 600px;
@@ -530,8 +545,8 @@ body {
 }
 
 .upload-area {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px dashed rgba(255, 255, 255, 0.3);
+    background: rgba(0, 82, 255, 0.05);
+    border: 2px dashed var(--border);
     border-radius: 16px;
     padding: 60px 20px;
     text-align: center;
@@ -543,20 +558,20 @@ body {
 }
 
 .upload-area:hover {
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--base-blue);
+    background: rgba(0, 82, 255, 0.1);
 }
 
 .upload-area.dragover {
-    border-color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--base-blue);
+    background: rgba(0, 82, 255, 0.15);
     transform: scale(1.02);
 }
 
 .upload-icon {
     font-size: 48px;
     margin-bottom: 24px;
-    color: #FFFFFF;
+    color: var(--text-primary);
     width: 80px;
     height: 80px;
     display: flex;
@@ -572,11 +587,11 @@ body {
     font-size: clamp(20px, 4vw, 24px);
     font-weight: 600;
     margin-bottom: 8px;
-    color: #FFFFFF;
+    color: var(--text-primary);
 }
 
 .upload-subtitle {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     font-size: clamp(14px, 3vw, 16px);
 }
 
@@ -612,8 +627,8 @@ body {
     max-width: 100%;
     max-height: 70vh;
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--border);
     margin-bottom: 20px;
     cursor: grab;
     touch-action: none;
@@ -638,7 +653,7 @@ body {
 }
 
 .touch-control-btn {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 82, 255, 0.9);
     color: white;
     border: none;
     padding: 8px 12px;
@@ -653,12 +668,12 @@ body {
 
 .touch-control-btn:active {
     transform: scale(0.95);
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--base-blue);
 }
 
 .controls-panel {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 82, 255, 0.05);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 20px;
     backdrop-filter: blur(10px);
@@ -670,7 +685,7 @@ body {
 .panel-title {
     font-size: 18px;
     font-weight: 600;
-    color: #FFFFFF;
+    color: var(--text-primary);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -683,7 +698,7 @@ body {
     display: block;
     font-size: 14px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
     margin-bottom: 8px;
     text-align: center;
 }
@@ -692,7 +707,7 @@ body {
     width: 100%;
     height: 8px;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 82, 255, 0.2);
     outline: none;
     -webkit-appearance: none;
     margin-bottom: 8px;
@@ -704,24 +719,24 @@ body {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: #FFFFFF;
+    background: var(--base-blue);
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 82, 255, 0.3);
 }
 
 .slider::-moz-range-thumb {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: #FFFFFF;
+    background: var(--base-blue);
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 82, 255, 0.3);
 }
 
 .slider-value {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     text-align: center;
     font-weight: 600;
 }
@@ -735,8 +750,8 @@ body {
 }
 
 .btn {
-    background: #FFFFFF;
-    color: var(--base-blue);
+    background: var(--base-blue);
+    color: white;
     border: none;
     padding: 12px 20px;
     border-radius: 8px;
@@ -754,19 +769,19 @@ body {
 
 .btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 25px rgba(0, 82, 255, 0.3);
+    background: var(--base-dark-blue);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: white;
+    color: var(--base-blue);
+    border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 82, 255, 0.05);
+    border-color: var(--base-blue);
 }
 
 .btn:disabled {
@@ -785,8 +800,8 @@ body {
 .spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #FFFFFF;
+    border: 3px solid rgba(0, 82, 255, 0.3);
+    border-top: 3px solid var(--base-blue);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 16px;
@@ -800,9 +815,9 @@ body {
 /* Success Message */
 .success-message {
     display: none;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #FFFFFF;
+    background: rgba(0, 82, 255, 0.1);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
     padding: 16px;
     border-radius: 8px;
     margin: 20px auto;
@@ -814,7 +829,7 @@ body {
 /* Footer */
 .footer {
     background: var(--surface);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid var(--border);
     padding: 40px 0;
     text-align: center;
 }
@@ -827,7 +842,7 @@ body {
 }
 
 .footer-text {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     font-size: 14px;
     text-align: center;
 }
@@ -1006,7 +1021,7 @@ body {
 <!-- Header -->
 <header class="header">
 <div class="header-container">
-    <a href="#" class="logo">BASE WIF HAIR</a>
+    <a href="#" class="logo">basewifhair</a>
     <nav class="nav">
         <a href="#upload" class="nav-link">Upload</a>
         <a href="#build" class="nav-link">Build</a>
@@ -1019,7 +1034,7 @@ body {
 <main class="main">
 <!-- Large Scrolling Banner -->
 <section class="scrolling-banner">
-    <div class="banner-text">BASE WIF HAIR • BASE WIF HAIR • BASE WIF HAIR • BASE WIF HAIR • BASE WIF HAIR • </div>
+    <div class="banner-text">basewifhair • basewifhair • basewifhair • basewifhair • basewifhair • </div>
 </section>
 
 <!-- Hero Section -->
@@ -1267,7 +1282,7 @@ class BaseWifHair {
         dragModeBtn.addEventListener('click', () => {
             dragMode = !dragMode;
             dragModeBtn.textContent = dragMode ? '✋ Drag ON' : '🤏 Drag Mode';
-            dragModeBtn.style.background = dragMode ? 'rgba(0, 255, 0, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+            dragModeBtn.style.background = dragMode ? 'rgba(0, 255, 0, 0.7)' : 'rgba(0, 82, 255, 0.9)';
             canvas.style.cursor = dragMode ? 'grab' : 'default';
         });
 
@@ -1388,12 +1403,12 @@ class BaseWifHair {
             // If wiflogo.png loads successfully, use it as background
             uploadIcon.style.backgroundImage = 'url(wiflogo.png)';
             uploadIcon.textContent = ''; // Remove emoji
-            console.log('Upload icon loaded successfully');
+            console.log('Upload icon loaded successfully from wiflogo.png');
         };
         img.onerror = () => {
             // If wiflogo.png fails to load, keep the emoji
             uploadIcon.textContent = '📸';
-            console.log('Using fallback upload icon');
+            console.log('Failed to load wiflogo.png, using fallback upload icon');
         };
         img.src = 'wiflogo.png';
     }
@@ -1409,13 +1424,13 @@ class BaseWifHair {
             heroLogo.style.backgroundSize = 'contain';
             heroLogo.style.backgroundRepeat = 'no-repeat';
             heroLogo.style.backgroundPosition = 'center';
-            console.log('Hero logo loaded successfully');
+            console.log('Hero logo loaded successfully from wiflogo.png');
         };
         img.onerror = () => {
             // If wiflogo.png fails to load, use fallback styling
             heroLogo.classList.add('fallback');
             heroLogo.textContent = 'WIF';
-            console.log('Using fallback hero logo');
+            console.log('Failed to load wiflogo.png, using fallback hero logo');
         };
         img.src = 'wiflogo.png';
     }
@@ -1743,7 +1758,7 @@ class BaseWifHair {
         // Reset drag mode button
         const dragModeBtn = document.getElementById('dragModeBtn');
         dragModeBtn.textContent = '🤏 Drag Mode';
-        dragModeBtn.style.background = 'rgba(0, 0, 0, 0.7)';
+        dragModeBtn.style.background = 'rgba(0, 82, 255, 0.9)';
         this.canvas.style.cursor = 'default';
         
         document.getElementById('upload').scrollIntoView({ 
