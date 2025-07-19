@@ -1765,3 +1765,111 @@ class BaseWifHair {
         document.getElementById('resultSection').style.display = 'none';
         document.getElementById('fileInput').value = '';
         document.getElementById('successMessage').style.display = 'none';
+        
+        // Reset all sliders to default values
+        document.getElementById('wigSize').value = 1.0;
+        document.getElementById('wigPositionY').value = 0;
+        document.getElementById('wigPositionX').value = 0;
+        document.getElementById('wigRotation').value = 0;
+        document.getElementById('wigOpacity').value = 1.0;
+        
+        // Reset slider display values
+        document.getElementById('sizeValue').textContent = '100%';
+        document.getElementById('positionYValue').textContent = '0';
+        document.getElementById('positionXValue').textContent = '0';
+        document.getElementById('rotationValue').textContent = '0°';
+        document.getElementById('opacityValue').textContent = '100%';
+        
+        // Scroll back to upload section
+        document.getElementById('upload').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
+
+    startWigRain() {
+        const wigRain = document.getElementById('wigRain');
+        const wigCount = 15;
+        
+        // Create falling wigs
+        for (let i = 0; i < wigCount; i++) {
+            setTimeout(() => {
+                this.createWigDrop(wigRain);
+            }, i * 800); // Stagger the creation
+        }
+        
+        // Continue creating wigs every few seconds
+        setInterval(() => {
+            this.createWigDrop(wigRain);
+        }, 3000);
+    }
+
+    createWigDrop(container) {
+        const wigDrop = document.createElement('div');
+        wigDrop.className = 'wig-drop';
+        
+        // Random horizontal position
+        wigDrop.style.left = Math.random() * 100 + '%';
+        
+        // Random animation duration (fall speed)
+        const duration = 8 + Math.random() * 4; // 8-12 seconds
+        wigDrop.style.animationDuration = duration + 's';
+        
+        // Random delay before starting
+        wigDrop.style.animationDelay = Math.random() * 2 + 's';
+        
+        // Random size variation
+        const size = 40 + Math.random() * 40; // 40-80px
+        wigDrop.style.width = size + 'px';
+        wigDrop.style.height = size + 'px';
+        
+        // If wig.png fails to load, create a fallback
+        const testImg = new Image();
+        testImg.onerror = () => {
+            // Create a simple wig-like shape with CSS
+            wigDrop.style.backgroundImage = 'none';
+            wigDrop.style.backgroundColor = '#0052FF';
+            wigDrop.style.borderRadius = '50% 50% 40% 40%';
+            wigDrop.style.border = '2px solid #0041CC';
+        };
+        testImg.src = 'wig.png';
+        
+        container.appendChild(wigDrop);
+        
+        // Remove the element after animation completes
+        setTimeout(() => {
+            if (wigDrop && wigDrop.parentNode) {
+                wigDrop.parentNode.removeChild(wigDrop);
+            }
+        }, (duration + 2) * 1000);
+    }
+}
+
+// Initialize the application when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new BaseWifHair();
+});
+
+// Handle Brian example image
+document.addEventListener('DOMContentLoaded', () => {
+    const brianExample = document.querySelector('.brian-example');
+    if (brianExample) {
+        const img = new Image();
+        img.onerror = () => {
+            // If brian.png fails to load, create a fallback
+            brianExample.style.backgroundImage = 'linear-gradient(135deg, #0052FF 0%, #1E6BFF 50%, #0041CC 100%)';
+            brianExample.style.display = 'flex';
+            brianExample.style.alignItems = 'center';
+            brianExample.style.justifyContent = 'center';
+            brianExample.style.fontSize = '24px';
+            brianExample.style.fontWeight = '900';
+            brianExample.style.color = 'white';
+            brianExample.textContent = 'EXAMPLE';
+            brianExample.removeAttribute('src');
+        };
+        img.src = 'brian.png';
+    }
+});
+</script>
+
+</body>
+</html>
